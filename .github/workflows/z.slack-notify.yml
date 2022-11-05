@@ -1,0 +1,40 @@
+name: "z Slack Notify"
+
+on:
+  workflow_dispatch:
+
+jobs:
+  notify:
+    name: Slack notify
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Send GitHub Action trigger data to Slack workflow
+        uses: slackapi/slack-github-action@v1.23.0
+        with:
+          channel-id: 'C049JQZ9QN9'
+          payload: |
+            {
+              "attachments": [
+                {
+                  "blocks": [
+                    {
+                      "type": "header",
+                      "text": {
+                        "type": "plain_text",
+                        "text": "Message Header",
+                        "emoji": true
+                      }
+                    },
+                    {
+                      "type": "section",
+                      "text": {
+                        "type": "mrkdwn",
+                        "text": "Hello World :ghost:"
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+        env:
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
