@@ -63,9 +63,6 @@ jobs:
             -input=false \
             -no-color \
             -detailed-exitcode
-      - name: echo test
-        run: |
-          echo "${{ steps.plan.outputs.exitcode }}"
       - name: Send GitHub Action trigger data to Slack workflow
         uses: slackapi/slack-github-action@v1.23.0
         with:
