@@ -103,7 +103,7 @@ jobs:
     steps:
       - name: test
         run: |
-          echo ${{ needs.preview.outputs.TG_PLAN_EXITCODE }}
+          echo "${{ needs.preview.outputs.TG_PLAN_EXITCODE }}"
       - name: Checkout repository
         uses: actions/checkout@v3
       - name: Setup terraform
