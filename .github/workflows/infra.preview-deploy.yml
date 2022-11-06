@@ -63,7 +63,7 @@ jobs:
             -var 'password=${{ secrets.MYSQL_PASSWORD }}' \
             -input=false \
             -no-color \
-            -detailed-exitcode
+            -detailed-exitcode >> $GITHUB_OUTPUT
       - name: Send GitHub Action trigger data to Slack workflow
         uses: slackapi/slack-github-action@v1.23.0
         with:
