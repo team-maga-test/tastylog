@@ -29,7 +29,7 @@ jobs:
     name: "Preview"
     runs-on: ubuntu-20.04
     outputs:
-      TG_PLAN_EXITCODE: ${{ steps.plan.outputs.exitcode }}
+      TF_PLAN_EXITCODE: ${{ steps.plan.outputs.exitcode }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -97,13 +97,10 @@ jobs:
   deploy:
     name: "Deploy"
     needs: preview
-    # if: needs.preview.outputs.TF_PLAN_EXITCODE == 2
+    if: needs.preview.outputs.TF_PLAN_EXITCODE == 2
     environment: production
     runs-on: ubuntu-20.04
     steps:
-      - name: test
-        run: |
-          echo "${{ needs.preview.outputs.TG_PLAN_EXITCODE }}"
       - name: Checkout repository
         uses: actions/checkout@v3
       - name: Setup terraform
